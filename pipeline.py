@@ -121,6 +121,10 @@ def main():
                         action='store_true',
                         help='Use grabcut in binarization step')
 
+    # U-nets
+    parser.add_argument('-u', '--unet',
+                        action='store_true',
+                        help='Use U-nets in binarization step')
     args = parser.parse_args()
 
     # Initialization
