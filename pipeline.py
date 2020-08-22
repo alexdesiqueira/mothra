@@ -5,7 +5,9 @@ import argparse
 import csv
 from butterfly import (ruler_detection, tracing, measurement, binarization)
 import matplotlib.pyplot as plt
-from skimage.io import imread
+from skimage.io import imread, imsave
+from skimage.util import img_as_ubyte
+from pathlib import Path
 
 WSPACE_SUBPLOTS = 0.7
 
@@ -179,7 +181,16 @@ def main():
                 T_space, top_ruler = ruler_detection.main(image_rgb, axes)
 
             elif step == 'binarization':
-                binary = binarization.main(image_rgb, top_ruler, args.grabcut, axes)
+                binary, rgb = binarization.main(image_rgb, top_ruler,
+                                                args.grabcut, args.unet, axes)
+                # BEGIN: saving output files.
+                image_save = Path(image_name).stem + '.png'
+                output_file = Path(args.output_folder)
+                Path.mkdir(output_file/'images', exist_ok=True)
+                imsave(Path(output_file/'images'/image_save), img_as_ubyte(rgb))
+                Path.mkdir(output_file/'labels', exist_ok=True)
+                imsave(Path(output_file/'labels'/image_save), img_as_ubyte(binary))
+                # END.
 
             elif step == 'measurements':
                 points_interest = tracing.main(binary, axes)

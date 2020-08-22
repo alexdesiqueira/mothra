@@ -236,4 +236,4 @@ def main(image_rgb, top_ruler, grabcut=False, axes=None):
     if axes and axes[3]:
         axes[3].axvline(x=label_edge, color='c', linestyle='dashed')
 
-    return bfly_bin
+    return bfly_bin, bfly_rgb
