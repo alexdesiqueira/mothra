@@ -175,7 +175,6 @@ def grabcut_binarization(bfly_rgb, bfly_bin):
 
 
 @memory.cache(ignore=['axes'])
-def main(image_rgb, top_ruler, grabcut=False, axes=None):
 def unet_binarization(bfly_rgb):
     """
     """
