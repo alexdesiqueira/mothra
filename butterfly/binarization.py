@@ -174,7 +174,6 @@ def grabcut_binarization(bfly_rgb, bfly_bin):
     return bfly_grabcut_bin
 
 
-@memory.cache(ignore=['axes'])
 def unet_binarization(bfly_rgb):
     """
     """
@@ -240,7 +239,7 @@ def return_largest_region(img_bin):
     return img_as_bool(img_bin)
 
 
-@memory.cache()
+@memory.cache(ignore=['axes'])
 def main(image_rgb, top_ruler, grabcut=False, unet=False, axes=None):
     """Binarizes and crops properly image_rgb
 
