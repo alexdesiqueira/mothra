@@ -6,5 +6,6 @@ scipy
 pandas
 pytest-timeout
 joblib
-fastai
+fastai < 2
 pooch
+exif
